@@ -1,13 +1,15 @@
 using System;
+using System.Threading.Tasks;
 
 
 namespace R5T.F0058.Construction
 {
-    class Program
+    partial class Program
     {
-        static void Main()
+        public async Task Run()
         {
-            Console.WriteLine("Hello World!");
+            //await Instances.RepositoryOperations.Delete_Idempotent();
+            await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
         }
     }
 }
