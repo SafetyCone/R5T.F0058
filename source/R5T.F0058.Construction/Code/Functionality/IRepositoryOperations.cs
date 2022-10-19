@@ -12,6 +12,41 @@ namespace R5T.F0058.Construction
 	public partial interface IRepositoryOperations : IFunctionalityMarker,
 		F0058.IRepositoryOperations
 	{
+		public async Task CreateNew_ProgramAsService_ConsoleRepository()
+        {
+			/// Inputs.
+			var name =
+				//"R5T.W1001"
+				Instances.RepositoryNames.TestRepository
+				;
+			var description =
+				//"A private first repo for creating a web application."
+				Instances.RepositoryDescriptions.ForTestRepository
+				;
+			var isPrivate = true;
+
+			var owner =
+				F0047.Instances.GitHubOwners.SafetyCone
+				;
+
+			/// Run.
+			await using var services = F0036.Instances.ServiceProvider
+				.ConfigureServices(servicesBuilder =>
+				{
+					servicesBuilder.UseServicesConfigurer<ServicesConfigurer>();
+				})
+				.Build();
+
+			var logger = services.GetLogger(nameof(CreateNew_ProgramAsService_ConsoleRepository));
+
+			await this.CreateNew_ProgramAsService_ConsoleRepository(
+				owner,
+				name,
+				description,
+				isPrivate,
+				logger);
+		}
+
 		/// <summary>
 		/// Create a new remote repository, clones it locally, adds the minimal files and folders for a repository, then commits the changes.
 		/// </summary>
@@ -75,7 +110,7 @@ namespace R5T.F0058.Construction
 			/// Inputs.
 			var name =
                 //"R5T.F0051"
-                Instances.RepositoryNames.TestRepository
+                Instances.RepositoryNames.TestRepository + ".Private"
                 ;
 			var owner =
 				F0047.Instances.GitHubOwners.SafetyCone

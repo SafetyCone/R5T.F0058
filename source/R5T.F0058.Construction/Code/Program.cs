@@ -8,8 +8,9 @@ namespace R5T.F0058.Construction
     {
         public async Task Run()
         {
-            //await Instances.RepositoryOperations.Delete_Idempotent();
-            await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
+            await Instances.RepositoryOperations.Delete_Idempotent();
+            //await Instances.RepositoryOperations.CreateNew_MinimalRepository_NonIdempotent();
+            //await Instances.RepositoryOperations.CreateNew_ProgramAsService_ConsoleRepository();
         }
     }
 }
